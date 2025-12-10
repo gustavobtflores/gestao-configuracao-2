@@ -1,8 +1,8 @@
 import Router from "express";
 
-const filmesRouter = Router();
+const moviesRouter = Router();
 
-filmesRouter.get("/filmes", (req, res) => {
+moviesRouter.get("/movies", (req, res) => {
   res.status(200).json({
     data: [
       {
@@ -25,4 +25,4 @@ filmesRouter.get("/filmes", (req, res) => {
   });
 });
 
-export { filmesRouter };
+export { moviesRouter };
