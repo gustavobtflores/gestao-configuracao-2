@@ -20,7 +20,7 @@ const movies = [
   },
 ];
 
-moviesRouter.get("/movies", (req, res) => {
+moviesRouter.get("/movies", (_req, res) => {
   res.status(200).json({
     data: movies,
   });
