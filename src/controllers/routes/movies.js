@@ -43,4 +43,18 @@ moviesRouter.post("/movies", (req, res) => {
   res.status(201).json({ data: newMovie });
 });
 
+moviesRouter.delete("/movies/:id", (req, res) => {
+  const { id } = req.params;
+
+  const movieIndex = movies.findIndex((movie) => movie.id === parseInt(id, 10));
+
+  if (movieIndex === -1) {
+    return res.status(404).json({ error: "Movie not found" });
+  }
+
+  movies.splice(movieIndex, 1);
+
+  res.status(204).send();
+});
+
 export { moviesRouter };
