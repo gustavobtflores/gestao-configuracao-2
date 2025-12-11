@@ -1,0 +1,17 @@
+# git
+.git/
+.github/
+
+# env
+.env
+
+# Tests
+coverage/
+
+# npm
+npm-debug.log
+node_modules/
+
+# Docker
+docker-compose.yml
+Dockerfile
