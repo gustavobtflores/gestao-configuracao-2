@@ -33,4 +33,30 @@ describe("Movies API", () => {
       expect(response.body.error).toBe("Title is required");
     });
   });
+
+  describe("DELETE /movies", () => {
+    it("should delete a movie", async () => {
+      const newMovie = { title: "The Godfather" };
+      const response = await request(app).post("/movies").send(newMovie);
+
+      expect(response.status).toBe(201);
+      expect(response.body).toHaveProperty("data");
+      expect(response.body.data).toHaveProperty("id");
+      expect(response.body.data.title).toBe(newMovie.title);
+
+      const deleteResponse = await request(app).delete(
+        `/movies/${response.body.data.id}`,
+      );
+
+      expect(deleteResponse.status).toBe(204);
+    });
+
+    it("should return 404 if movie does not exist", async () => {
+      const response = await request(app).delete("/movies/9999");
+
+      expect(response.status).toBe(404);
+      expect(response.body).toHaveProperty("error");
+      expect(response.body.error).toBe("Movie not found");
+    });
+  });
 });
